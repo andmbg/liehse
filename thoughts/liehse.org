@@ -1,1 +1,153 @@
  
+* Log
+
+** Azzurra
+     
+*** Meeting <2019-01-31 Do> [0/1]
+
+It's a pilot.
+
+- age: ~ 3-7 (for now); target: 5-6
+- cut C2 from analysis
+  (generally: what formulations are current?)
+- add condition: "ich weiß"
+- [ ] see literature:
+  + Julia Leonard (Science): effort & motivation
+  + see: MCFrank: epist. Markers
+  + [X] Dan Yurovski
+  + Mahesh Srinivasan (on pragmatics)
+  + Fraukes Literatur
+ 
+
+*** DONE analyze what we have
+    CLOSED: [2019-02-13 Mi 13:49]
+
+- most interesting:
+  + total actions
+  + unique actions
+  + repeated actions
+  + engagement (time)
+  + rate (actions / time)
+  + strategy?
+  + bayes: based on instructions and influenced hyp space, how efficient is probing of hypothesis space?
+
+
+** Actual wording of conditions
+
+*** Early (from start to somewhere when it changed) [2017-07-18]    :ARCHIVE:
+    
+- C1:
+  Man kann die Lampen anmachen.
+  Man kann einen oder mehrere Schalter zusammen drücken.
+  Probier mal aus was man damit machen kann,
+  ich schreib kurz draußen was auf.
+
+- C2:
+  Man kann die Lampen anmachen.
+  Entweder man drückt auf den grauen Schalter, oder man drückt auf den grauen und den roten Schalter.
+  Oder man muss den gelben und den grünen Schalter drücken.
+  Probier doch mal aus wie das Ding funktioniert.
+  Ich schreib mal draußen kurz was auf, ja?  Ich komm gleich wieder.
+
+- C3:
+  Man kann die Lampen damit anmachen.
+  Entweder man drückt den grauen Schalter, oder man drückt den grauen und den roten Schalter.
+  Oder man muss den gelben und den grünen Schalter drücken.
+  Probier ruhig mal aus, ich schreib draußen mal kurz was auf.
+  (C asks "now?") -- Probier einfach aus, genau.
+
+- C4
+  Man kann die Lampen anmachen.
+  Man muss auf den roten und auf den grauen Schalter drücken, damit das Licht angeht.
+  Probier mal aus wie das Ding funktioniert, ich komm gleich wieder.
+  
+
+*** Late (until end of hand-coded trials) [2017-09-13]              :ARCHIVE:
+
+- C1:
+  Man kann einen oder zwei Schalter zusammen drücken,
+  um die Lampen anzumachen.
+  Probier mal aus wie das Ding funktioniert,
+  ich muss kurz was aufschreiben.
+  
+- C2:
+  Man kann einen oder zwei Schalter zusammen drücken, um die Lampen anzumachen.
+  Es könnte sein, dass man den grauen Schalter drücken muss.
+  Oder den roten, oder den gelben, oder den grünen,
+  damit das Licht angeht.
+  Es könnte sein, dass man den grauen und den roten Schalter drücken muss.
+  Oder den grauen und den grünen, oder den grauen und den gelben, oder den roten und den grünen, oder den roten und den gelben.
+  Oder den grünen und den gelben,
+  damit das Licht angeht.
+  Probier mal aus wie das Ding funktioniert, ich muss kurz was aufschreiben.
+
+- C3:
+  (Vor Vorstellung der Knöpfe: Ich sag dir kurz was dazu, dann kannst du ausprobieren okay?)
+  Man kann einen oder zwei Schalter zusammen drücken, um die Lampen anzumachen.
+  Es könnte sein, dass man auf den roten und auf den grauen Schalter drücken muss, damit das Licht angeht.
+  Probier mal aus wie das Ding funktioniert, ich geh kurz was aufschreiben, okay?
+
+- C4:
+  (Vor Vorstellung der Knöpfe: Ich sag dir kurz was dazu, dann kannst du ausprobieren okay?)
+  Man kann einen oder zwei Schalter zusammen drücken, um die Lampen anzumachen.
+  Man muss auf den roten und den grauen Schalter drücken, damit das Licht angeht.
+  Probier mal aus wie das Ding funktioniert, ich muss kurz was aufschreiben.
+
+     
+*** New  [2019-03-14]
+
+**** Instruktion LIEHSE
+
+***** Eingang
+
+- Guck mal hier, ich will dir so gerne (noch) die Box hier zeigen.
+- Guck mal, da sind vier Schalter <Fig. 1> und ne Lampe <Fig. 2>.
+- Und die Lampe, die kann angehen.
+- Aber dafür musst du einen oder mehrere Schalter *gleichzeitig* drücken.
+
+***** Bedingungen
+
+****** 0 "Control"
+Probier mal!
+
+****** 1 "Unmarked"
+Das hat mit dem weißen Schalter hier zu tun.
+
+****** 2 "Marked"
+Vielleicht hat das mit dem weißen Schalter hier zu tun.
+
+****** 3 "Unmarked disjunctive"
+Das hat mit dem weißen ODER mit dem roten Schalter zu tun.
+
+****** 4 "Marked disjunctive"
+Vielleicht hat das mit dem weißen ODER mit dem roten Schalter zu tun.
+
+***** Ende
+Wenn du nicht mehr weitermachen willst, dann holste mich wieder rein.
+
+
+**** Messgrößen & Hypothesen
+
+***** count types [n/15]
+- mehr bei "vielleicht" vs. unmarkiert
+- (AD:) schnelleres vs. langsameres Abfallen der Dichte origineller Types vs. Control
+- (AR:) mehr bei OR vs. nur ein Vorschlag
+
+***** count tokens [n]
+- mehr bei "vielleicht" vs. unmarkiert
+- (AR:) mehr bei OR vs. nur ein Vorschlag
+
+***** time [s]
+- länger bei "vielleicht" vs. unmarkiert
+- länger bei OR vs. nur ein Vorschlag
+
+***** Sequenzen
+- mehr strahlenförmig (hold one) bei nicht-OR
+
+
+**** Wann die Lampe angeht
+
+- Dös isch der Knackpunkt.
+  Frauke will post-light-Exploration.
+  Dafür müssen wir Tokens & Types zählen.
+  Technisches Zählproblem.
