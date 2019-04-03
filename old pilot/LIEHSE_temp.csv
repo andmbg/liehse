@@ -1,0 +1,79 @@
+ID	Birth date	Testing date	Experimenter(s)	Age months	Age years	Gender	Condition	Location	Offset first look away	Offset 3 sec no activity	Offset other toy	Offset first call 	Start	End	Time to first activation	activation	combos_total	How many diverse combinations - total	How many combinations before first activation 	How many combinations - 1 switch	How many diverse combinations - 1 switch		How many combinations - 1 switch	How many diverse combinations - 1 switch	How many combinations - 2 switches	How many diverse combinations - 2 switches	How many combinations - 3 switches	How many diverse combinations - 3 switches	How many combinations - 4 switches	How many diverse combinations - 4 switches		Demonstration (Y/N)	Explanation (Y/N)	Offering positive alternatives (number)	Offering negative alternatives (number)	Coder 1	Coder 2	problematic	Comments
+19	05.07.2011	18.07.2017	Konstantin, Annalena	72	6	m	C1	Blossin	00:00:42	00:00:44	00:02:00	00:00:50	00:00:44	00:02:44	00:02:00	N	13		x													N	N	0	5	Nadin		F	
+20	27.09.2011	18.07.2017	Konstantin, Annalena	70	5;10	w	C3	Blossin	00:00:07	00:00:36	00:02:00	00:02:00	00:00:35	00:01:36	00:00:17	Y	6		2													Y	Y	1	0	Nadin		F	
+21	15.11.2010	18.07.2017	Konstantin, Annalena	80	6;8	m	C1	Blossin	00:00:09	00:00:23	00:02:00	00:02:00	00:00:36	00:02:46	00:01:45	Y	20		16													Y	Y	1	1	Nadin		F	
+22	03.12.2010	18.07.2017	Konstantin, Annalena	79	6;7	w	C4	Blossin	00:01:03	00:02:00	00:02:00	00:02:00	00:00:35	00:02:57	00:00:03	Y	70		1													Y	Y	1	0	Nadin		F	
+23	03.01.2011	18.07.2017	Konstantin, Annalena	78	6;6	w	C2	Blossin	00:00:12	00:02:00	00:02:00	00:02:00	00:00:36	00:02:58	00:02:00	N	54		x													N	N	0	0	Nadin		F	
+24	18.08.2011	18.07.2017	Konstantin, Annalena	71	5;11	m	C3	Blossin	00:00:25	00:00:28	00:02:00	00:02:00	00:00:39	00:01:26	00:00:14	Y	24		2													Y	Y	2	0	Nadin		F	
+25	08.10.2010	18.07.2017	Konstantin, Annalena	81	6;9	w	C1	Blossin	00:00:12	00:02:00	00:02:00	00:02:00	00:00:27	00:02:33	00:00:07	Y	55		2													Y	Y	1	0	Nadin		F	
+26	26.10.2010	18.07.2017	Konstantin, Annalena	77	6;5	m	C3	Blossin	00:00:44	00:02:00	00:02:00	00:01:02	00:00:28	00:01:29	00:00:37	Y	16		10													Y	Y	1	1	Nadin		F	
+27	02.05.2009	24.07.2017	Nadin, Klara, Konstantin	98	8;2	m	C4	Blossin	00:00:36	00:00:36	00:02:00	00:02:00	00:00:53	00:02:03	00:00:00	Y	29		0													Y	Y	1	1	Sarah		F	
+28	13.06.2008	24.07.2017	Nadin, Klara, Konstantin	109	9;1	w	C2	Blossin	00:00:09	00:00:18	00:02:00	00:02:00	00:00:43	00:03:01	00:00:32	Y	22		5													Y	Y	1	0	Sarah		F	
+29	14.07.2008	24.07.2017	Nadin, Klara, Konstantin	108	9	m	C1	Blossin	00:00:19	00:02:00	00:02:00	00:02:00	00:00:30	00:02:29	00:02:00	N	0		x													Y	Y	1	7	Sarah		T	Legt 4 Finger auf alle 4 Kn�pfe, dr�ckt aber nicht, h�lt Finger 2 Min. lang so. Entdeckt pos. Und neg. Funktion erst bei Demo.
+30	07.08.2008	24.07.2017	Nadin, Klara, Konstantin	107	8;11	w	C4	Blossin	00:00:06	00:00:04	00:02:00	00:01:34	00:00:49	00:02:33	00:00:00	Y	57		0													Y	Y	2	5	Sarah		F	
+31	27.11.2008	24.07.2017	Nadin, Klara, Konstantin	116	8;9	m	C3	Blossin	00:00:36	00:00:36	00:02:00	00:02:00	00:00:38	00:02:45	00:00:03	Y	57		0													Y	Y	1	2	Sarah		T	Stellt die Konsole aufrecht hin und dr�ckt Kn�pfe, deshalb konnten nicht alle Kombinationen gesehen werden.
+32	11.07.2008	24.07.2017	Nadin, Klara, Konstantin	108	9	m	C2	Blossin	00:00:13	00:01:22	00:02:00	00:02:00	00:00:33	00:03:05	00:00:12	Y	99		6													Y	Y	1	4	Sarah		F	
+33	05.12.2008	24.07.2017	Nadin, Klara, Konstantin	104	8;8	m	C4	Blossin	00:00:32	00:00:41	00:00:50	00:02:00	00:00:24	00:02:17	00:00:01	Y	71		0													Y	Y	1	1	Sarah		F	Dr�ckt SEHR schnell die Kn�pfe, schwer zu z�hlen.
+34	10.08.2008	24.07.2017	Nadin, Klara, Konstantin	107	8;11	m	C4	Blossin	00:00:13	00:00:35	00:02:00	00:02:00	00:00:31	00:02:48	00:00:11	Y	62		4													Y	N	1	8	Sarah		F	
+35	08.12.2009	24.07.2017	Nadin, Klara, Konstantin	91	7;7	w	C3	Blossin	00:00:17	00:00:38	00:02:00	00:02:00	00:00:32	00:01:46	00:00:01	Y	37		0													Y	Y	1	4	Nadin		F	
+36	23.05.2008	24.07.2017	Nadin, Klara, Konstantin	110	9;2	m	C3	Blossin	00:00:01	00:00:52	00:02:00	00:00:01	00:00:31	00:01:31	00:00:04	Y	26		1													Y	Y	1	1	Sarah		T	Erheber 2 kommt bereits nach 1 Minuten rein, nicht nach 2 Minuten.
+37	11.11.2008	25.05.2017	Nadin, Klara, Konstantin	105	8;9	m	C2	Blossin	00:00:08	00:00:01	00:02:00	00:00:46	00:00:42	00:02:06	00:02:00	N	43		x													N	N	0	4	Sarah		F	
+38	20.09.2008	25.05.2017	Nadin, Klara, Konstantin	106	8;10	m	C1	Blossin	00:00:22	00:00:22	00:02:00	00:02:00	00:00:26	00:01:28	00:00:10	Y	14		6													Y	N	1	6	Sarah		F	
+39	14.06.2017	25.05.2017	Nadin, Klara, Konstantin		XX	w	C1	Blossin	00:00:26	00:00:47	00:02:00	00:02:00	00:00:34	00:01:50	00:00:19	Y	37		6													Y	Y	1	5	Sarah		F	
+40	03.05.2008	25.05.2017	Nadin, Klara, Konstantin	110	9;2	m	C2	Blossin	00:00:04	00:01:17	00:02:00	00:02:00	00:00:26	00:02:01	00:00:01	Y	62		1													Y	Y	1	3	Sarah		F	
+41	28.10.2007	25.05.2017	Nadin, Klara, Konstantin	117	9;9	w	C1	Blossin	00:00:11	00:00:23	00:02:00	00:02:00	00:00:38	00:03:10	00:02:00	N	37		x													N	N	0	0	Sarah		T	"Offering negative alternatives erst auf Nachfrage/Aufforderung ""Zeig mal.""."
+42	13.11.2008	25.05.2017	Nadin, Klara, Konstantin	107	8;9	m	C3	Blossin	00:00:18	00:00:41	00:02:00	00:02:00	00:00:34	00:01:36	00:00:09	Y	55		5													Y	Y	1	4	Sarah		F	
+43	09.05.2009	25.05.2017	Nadin, Klara, Konstantin	98	8;2	w	C2	Blossin	00:00:02	00:00:13	00:02:00	00:02:00	00:00:33	00:02:22	00:00:05	Y	16		0													Y	N	1	1	Sarah		F	
+44	04.12.2009	02.08.2017	Konstantin, Annalena	91	7;7	m	C2	Blossin	00:00:23	00:00:27	00:02:00	00:02:00	00:00:30	00:01:32	00:02:00	N	8		x													Y	Y	1	1	Nadin		T	Kind hat erst bei der Demo Funktion entdeckt und erkl�rt sie richtig
+45	23.04.2009	02.08.2017	Konstantin, Annalena	99	8;3	m	C2	Blossin	00:00:17	00:00:02	00:02:00	00:02:00	00:00:28	00:02:23	00:00:16	Y	99		10													Y	Y	1	1	Sarah		F	"Explanation erst nach der Frage ""Kannst du mir das erkl�ren?""."
+46	03.06.2007	02.08.2017	Konstantin, Annalena	121	10;1	w	C3	Blossin	00:00:02	00:00:04	00:02:00	00:02:00	00:00:23	00:01:27	00:00:01	Y	7		0													Y	Y	1	0	Sarah		F	
+47	10.02.2007	02.08.2017	Konstantin, Annalena	125	10;5	w	C1	Blossin	00:00:15	00:00:38	00:02:00	00:02:00	00:00:19	00:02:20	00:00:28	Y	41		8													Y	Y	1	0	Sarah		F	
+48	24.03.2007	02.08.2017	Konstantin, Annalena	124	10;4	m	C3	Blossin	00:00:05	00:00:11	00:00:25	00:02:00	00:00:22	00:00:57	00:02:00	N	6		x													N	N	0	2	Sarah		F	
+49	12.04.2009	02.08.2017	Konstantin, Annalena	99	8;3	m	C4	Blossin	00:00:17	00:00:17	00:02:00	00:02:00	00:00:23	00:01:30	00:00:01	Y	5		0													Y	Y	1	0	Sarah		F	"Explanation erst nach der Frage ""Kannst du mir das erkl�ren?""."
+50	27.08.2008	02.08.2017	Konstantin, Annalena	107	8;11	m	C2	Blossin	00:00:39	00:00:40	00:02:00	00:02:00	00:00:25	00:01:20	00:00:08	Y	26		5													N	Y	1	0	Sarah		F	
+51	19.03.2007	02.08.2017	Konstantin, Annalena	124	10;4	w	C2	Blossin	00:00:06	00:01:25	00:02:00	00:02:00	00:00:26	00:02:04	00:00:03	Y	35		1													Y	Y	1	1	Sarah		F	
+52	07.03.2008	02.08.2017	Konstantin, Annalena	112	9;4	m	C4	Blossin	00:00:03	00:00:33	00:00:44	00:02:00	00:00:22	00:01:10	00:00:02	Y	26		1													Y	Y	1	0	Sarah		F	
+53	25.05.2009	02.08.2017	Konstantin, Annalena	98	8;2	w	C3	Blossin	00:00:03	00:00:06	00:02:00	00:02:00	00:00:27	00:01:10	00:02:00	N	2		x													N	N	0	0	Sarah		F	
+54	15.02.2007	02.08.2017	Konstantin, Annalena	125	10;5	m	C3	Blossin	00:00:50	00:00:54	00:02:00	00:02:00	00:00:32	00:02:14	00:00:03	Y	52		2													Y	N	1	0	Sarah		F	Explanation erst nach mehrfacher Nachfrage.
+55	04.10.2008	02.08.2017	Konstantin, Annalena	107	8;9	m	C2	Blossin	00:00:12	00:00:36	00:02:00	00:02:00	00:00:27	00:01:55	00:00:03	Y	20		2													Y	Y	1	0	Sarah		F	Negative Alternatives erst auf Nachfrage.
+56	10.02.2007	02.08.2017	Konstantin, Annalena	125	10;5	m	C1	Blossin	00:00:13	00:01:29	00:02:00	00:02:00	00:00:21	00:02:25	00:00:27	Y	96		17													Y	Y	2	2	Sarah		F	
+57	02.02.2007	02.08.2017	Konstantin, Annalena	125	10;5	m	C1	Blossin	00:00:18	00:00:51	00:01:19	00:00:05	00:00:22	00:01:46	00:00:12	Y	38		4													Y	Y	2	5	Sarah		F	
+58	25.06.2008	02.08.2017	Konstantin, Annalena	109	9;1	m	C1	Blossin	00:00:22	00:00:39	00:02:00	00:02:00	00:00:24	00:01:12	00:00:07	Y	33		5													Y	N	1	3	Sarah		F	
+59	11.12.2009	02.08.2017	Konstantin, Annalena	91	7;7	w	C2	Blossin	00:00:07	00:00:30	00:02:00	00:02:00	00:00:35	00:01:45	00:02:00	N	5		x													N	N	0	2	Nadin		F	
+60	17.03.2008	02.08.2017	Konstantin, Annalena	112	9;4	m	C4	Blossin	00:00:04	00:00:04	00:00:56	00:00:04	00:00:24	00:01:56	00:00:21	Y	36		11													Y	Y	1	5	Sarah		F	
+61	09.12.2007	02.08.2017	Konstantin, Annalena	115	9;7	m	C4	Blossin	00:00:46	00:00:53	00:01:30	00:02:00	00:00:22	00:01:58	00:00:00	Y	42		0													Y	Y	2	5	Sarah		F	
+62	28.11.2006	02.08.2017	Konstantin, Annalena	128	10;8	m	C4	Blossin	00:00:39	00:00:42	00:02:00	00:02:00	00:00:37	00:01:35	00:00:08	Y	23		4													Y	Y	1	0	Sarah		F	
+63	05.01.2009	02.08.2017	Konstantin, Annalena	102	8;6	w?	C4	Blossin	00:00:27	00:00:29	00:02:00	00:02:00	00:00:58	00:01:50	00:00:00	Y	19		0													Y	N	1	0	Sarah		F	Demo erst auf erneute Nachfrage
+64	08.02.2012	11.09.2017	Klara, Annalena	55	4;7	w	C1	Blossin	00:00:24	00:00:29	00:02:00	00:02:00	00:00:27	00:02:35	00:02:00	N	30		x													N	N	0	1	Sarah		F	
+65	01.05.2012	11.09.2017	Klara, Annalena	52	4;4	w	C4	Blossin	00:00:08	00:00:04	00:02:00	00:01:58	00:00:20	00:02:18	00:00:03	Y	36		0													N	Y	0	0	Sarah		F	
+66	16.03.2011	11.09.2017	Klara, Annalena	65	5;5	m	C2	Blossin	00:01:01	00:01:01	00:01:23	00:02:00	00:01:13	00:02:40	00:00:04	Y	44		1													Y	Y	0	1	Sarah		F	Explanation erst auf erneute Nachfrage
+67	20.08.2012	11.09.2017	Klara, Annalena	48	4;0	w	C2	Blossin	00:00:16	00:00:00	00:02:00	00:02:00	00:01:08	00:03:06	00:02:00	N	2		x																	Sarah		F	Explanation Nachfrage wird nicht gestellt, weil Kind keine Lust mehr hat.
+68	20.11.2011	11.09.2017	Klara, Annalena	57	4;9	m	C2	Blossin	00:00:03	00:01:06	00:02:00	00:00:03	00:00:57	00:02:27	00:00:01	Y	38		0													Y	Y	0	0	Sarah		F	Explanation erst auf erneute Nachfrage
+69	21.12.2011	11.09.2017	Klara, Annalena	56	4;8	m	C3	Blossin	00:00:34	00:00:34	00:02:00	00:02:00	00:00:29	00:02:43	00:00:01	Y	71		0													Y	Y	0	0	Sarah		F	
+70	23.07.2012	11.09.2017	Klara, Annalena	49	4;1	w	C3	Blossin	00:00:20	00:00:03	00:02:00	00:02:00	00:00:34	00:01:45	00:02:00	N	12		x													N	N	0	4	Sarah		F	
+71	27.08.2012	11.09.2017	Klara, Annalena	48	4;0	w	C1	Blossin	00:00:14	00:00:03	00:02:00	00:02:00	00:00:30	00:02:24	00:00:25	Y	24		5													Y	N	0	0	Sarah		F	
+72	07.02.2012	11.09.2017	Klara, Annalena	55	4;7	m	C4	Blossin	00:00:50	00:02:00	00:02:00	00:01:25	00:00:33	00:01:58	00:00:01	Y	63		0													Y	Y	0	2	Sarah		F	
+73	16.05.2013	08.09.2017	Frauke, Konstantin, Nadin	52	4;4	m	C3	Blossin	00:00:03	00:00:03	00:02:00	00:00:04	00:00:47	00:01:55	00:00:01	Y	62		0													Y	N	0	6	Sarah		F	
+75	28.09.2012	08.09.2017	Frauke, Konstantin, Nadin	59	4;11	w	C3	Blossin	00:00:05	00:02:00	00:02:00	00:02:00	00:00:27	00:01:45	00:00:08	Y	25		3													Y	N	2	2	Sarah		F	
+76	20.06.2012	08.09.2017	Frauke, Konstantin, Nadin	63	5;3	m	C2	Blossin	00:00:28	00:00:28	00:02:00	00:02:00	00:00:36	00:01:55	00:02:00	N	10		x													N	N	0	6	Sarah		F	
+77	30.01.2013	08.09.2017	Frauke, Konstantin, Nadin	56	4;8	w	C4	Blossin	00:00:04	00:00:23	00:02:00	00:02:00	00:00:28	00:01:13	00:00:10	Y	9		2													Y	N	2	2	Sarah		F	
+78	12.06.2012	08.09.2017	Frauke, Konstantin, Nadin	63	5;3	w	C2	Blossin	00:00:42	00:00:42	00:02:00	00:02:00	00:00:53	00:01:53	00:00:35	Y	5		4													Y	N	0	0	Sarah		F	
+79	18.10.2012	08.09.2017	Frauke, Konstantin, Nadin	59	4;11	w	C1	Blossin	00:00:10	00:00:08	00:02:00	00:02:00	00:00:29	00:01:18	00:02:00	N	4		x													N	N	0	2	Sarah		F	
+80	02.11.2012	08.09.2017	Frauke, Konstantin, Nadin	58	4;10	w	C4	Blossin	00:00:10	00:00:06	00:02:00	00:02:00	00:00:42	00:01:17	00:02:00	N	2		x													N	N	0	0	Sarah		F	
+81	12.06.2012	08.09.2017	Frauke, Konstantin, Nadin	63	5;3	w	C2	Blossin	00:00:26	00:00:40	00:02:00	00:02:00	00:00:58	00:01:51	00:02:00	N	30		x													Y	N	1	4	Sarah		F	Entdeckt Funktion erst w�hrend der Demonstration
+82	19.09.2013	08.09.2017	Frauke, Konstantin, Nadin	47	3;11	m	C3	Blossin	00:00:27	00:00:02	00:02:00	00:02:00	00:00:37	00:02:02	00:02:00	N	23		x													N	N	0	2	Sarah		F	
+83	21.10.2013	08.09.2017	Frauke, Konstantin, Nadin	47	3;11	m	C4	Blossin	00:00:04	00:00:20	00:02:00	00:02:00	00:00:33	00:01:39	00:02:00	N	28		x													N	N	0	4	Sarah		F	
+84	13.06.2013	08.09.2017	Frauke, Konstantin, Nadin	51	4;3	w	C4	Blossin	00:00:19	00:00:19	00:02:00	00:02:00	00:00:39	00:01:40	00:02:00	N	2		x													N	N	0	2	Sarah		F	
+85	25.08.2011	13.09.2017	Annalena, Nadin 	73	6;1	w	C1	Blossin	00:00:18	00:00:18	00:02:00	00:01:00	00:00:24	00:01:34	00:00:36	Y	10		2													Y	Y	0	3	Sarah		F	
+86	10.10.2011	13.09.2017	Annalena, Nadin 	71	5;11	w	C2	Blossin	00:00:46	00:00:51	00:02:00	00:02:00	00:01:04	00:03:01	00:00:43	Y	18		14													Y	N	0	0	Sarah		F	
+87	08.02.2012	13.09.2017	Annalena, Nadin 	67	5;7	w	C4	Blossin	00:00:38	00:01:21	00:01:32	00:02:00	00:00:34	00:02:09	00:00:03	Y	29		0													Y	N	0	2	Sarah		F	
+88	03.06.2011	13.09.2017	Annalena, Nadin 	75	6;3	w	C2	Blossin	00:00:05	00:00:57	00:02:00	00:02:00	00:01:00	00:02:22	00:02:00	N	37		x													N	N	0	4	Sarah		F	
+89	19.12.2011	13.09.2017	Annalena, Nadin 	68	5;8	w	C2	Blossin	00:00:11	00:00:11	00:02:00	00:02:00	00:00:55	00:01:37	00:00:06	Y	4		1													Y	N	0	2	Sarah		F	
+90	16.12.2011	13.09.2017	Annalena, Nadin 	68	5;8	m	C1	Blossin	00:00:39	00:00:39	00:02:00	00:02:00	00:00:32	00:02:27	00:02:00	N	33		x													N	N	0	1	Sarah		F	
+91	12.09.2011	13.09.2017	Annalena, Nadin 	72	6;0	m	C4	Blossin	00:00:30	00:00:30	00:00:41	00:02:00	00:00:28	00:01:34	00:00:02	Y	13		0													Y	Y	0	0	Sarah		F	
+92	10.01.2012	13.09.2017	Annalena, Nadin 	68	5;8	m	C3	Blossin	00:00:07	00:00:06	00:02:00	00:00:49	00:00:36	00:01:26	00:00:24	Y	23		17													Y	Y	0	4	Sarah		F	Explanation erst auf erneute Nachfrage / Unterbrechung von Demonstration & Explanation, weil Kind auf Toilette musste
+93	10.12.2012	13.09.2017	Annalena, Nadin 	68	5;8	w	C4	Blossin	00:00:05	00:00:09	00:02:00	00:01:19	00:00:28	00:01:47	00:00:49	Y	29		15													Y	Y	0	0	Sarah		F	
+94	29.09.2011	13.09.2017	Annalena, Nadin 	71	5;11	m	C1	Blossin	00:00:36	00:02:00	00:02:00	00:02:00	00:00:24	00:02:58	00:00:05	Y	62		2													Y	Y	0	3	Sarah		F	
+95	24.04.2012	13.09.2017	Annalena, Nadin 	64	5;4	w	C3	Blossin	00:00:08	00:00:08	00:00:36	00:00:13	00:00:32	00:01:13	00:00:10	Y	5		0													Y	N	0	0	Sarah		F	
+96	17.09.2011	13.09.2017	Annalena, Nadin 	71	5;11	w	C3	Blossin	00:00:21	00:00:31	00:02:00	00:02:00	00:00:34	00:01:41	00:00:01	Y	16		0													Y	Y	0	6	Sarah		F	
+97	18.04.2013	13.09.2017	Annalena, Nadin 	52	4;4	w	C4	Blossin	00:00:42	00:00:42	00:02:00	00:02:00	00:00:29	00:02:16	00:00:03	Y	31		0													Y	N	0	0	Sarah		F	

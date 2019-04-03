@@ -1,0 +1,648 @@
+---
+title: "LIEHSE: looking at the data"
+output:
+  html_document:
+    toc: true
+    df_print: paged
+---
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(rethinking)
+library(tidyverse)
+library(readxl)
+library(gridExtra)
+
+theme_set(theme_classic() +
+            theme(strip.background = element_blank(),
+                  panel.border = element_rect(color = "grey90",
+                                              fill = NA),
+                  legend.background = element_blank()))
+
+d <- read_excel("LIEHSE_ms.xlsx")
+
+dd <- d %>% 
+  select(
+    ID,
+    age_months = "Age months",
+    condition = "Condition",
+    combos_total,
+    combos_pre_success = "How many combinations before first activation",
+    success = "activation",
+    lat_first_look_away = "Offset first look away",
+    lat_3sec = "Offset 3 sec no activity",
+    problematic
+  ) %>% 
+  mutate(condition = as.factor(condition),
+         combos_pre_success = as.integer(ifelse(
+           combos_pre_success == "x", 0, combos_pre_success)),
+         success = as.integer(ifelse(success == "Y", 1, 0)),
+         combos_total = as.integer(combos_total),
+         combos_post_success = as.integer(ifelse(success == 1,
+                                                 combos_total - combos_pre_success,
+                                                 NA)),
+         age_months = as.integer(age_months),
+         ID = as.integer(ID),
+         lat_first_look_away = as.integer(lat_first_look_away),
+         lat_3sec = as.integer(lat_3sec)) %>% 
+  filter(problematic == "F") %>%
+  mutate(problematic = NULL) %>% 
+  filter(!is.na(age_months))
+
+dd <- as.data.frame(dd)
+```
+
+
+```{r echo=FALSE}
+str(dd)
+```
+
+Long story short: Given these variables from the dataset that we have for now, it's hard to find an effect from the different instructions (conditions).
+The following summary plots should illustrate that.
+Let me know if you need more (analyses, explanation, correction, etc.).
+
+# Visual descriptives of the data
+
+## Overall
+
+### Number of participants in conditions:
+```{r}
+table(dd$condition)
+```
+
+Where conditions have these instructions:
+
+- **C1**  Man kann einen oder mehrere Schalter Zusammen drücken.
+- **C2**  Entweder man drückt den grauen Schalter oder man drückt den grauen und den roten Schalter. Oder man muss den gelben und den grünen Schalter drücken.
+- **C3**  Ich denke, man muss auf den roten und auf den grauen Schalter drücken, damit das Licht angeht.
+- **C4**  Man muss auf den roten und auf den grauen Schalter drücken, damit das Licht angeht.
+
+### Overall number of combinations:
+
+```{r echo=FALSE, message=FALSE}
+ggplot(dd, aes(x = combos_total)) +
+  geom_histogram(binwidth = 2) +
+  xlab("Combinations")
+```
+
+## Combinations by condition
+
+### Total combos
+
+```{r echo=FALSE, message=FALSE}
+ggplot(dd,
+       aes(y = combos_total,
+           x = condition)) +
+  geom_boxplot(alpha = 0,
+               width = .5,
+               color = "grey") +
+  geom_dotplot(binaxis = "y",
+               stackdir = "center",
+               alpha = .5) +
+  ylab("Total combinations")
+```
+
+### Combos after success
+
+How much do kids keep trying more combos even when they were successful?
+
+**Note**: `r sum(dd$success == 0)` children were unsuccessful.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dd %>% filter(success == 1) %>% 
+  ggplot(aes(y = combos_post_success,
+             x = condition)) +
+  geom_boxplot(alpha = 0,
+               width = .5,
+               color = "grey") +
+  geom_dotplot(binaxis = "y",
+               stackdir = "center",
+               alpha = .5) +
+  ylab("Combinations after success")
+```
+
+### Combos until success
+
+Excluding unsuccessful children (```r sum(dd$success == 0)``` / ```r nrow(dd)```)
+
+```{r echo=FALSE, message=FALSE}
+dd %>% 
+  filter(success == 1) %>% 
+  ggplot(aes(y = combos_pre_success,
+             x = condition)) +
+  geom_boxplot(alpha = 0,
+               width = .5,
+               color = "grey") +
+  geom_dotplot(binaxis = "y",
+               stackdir = "center",
+               alpha = .5) +
+  ylab("Combinations until success")
+```
+
+## Combinations by condition and age
+
+Add age as a predictor, otherwise same numbers.
+
+### Total combos
+
+```{r echo=FALSE, message=FALSE}
+grid.arrange(
+  ggplot(dd %>% filter(condition %in% c("C1", "C2")),
+         aes(x = age_months / 12,
+             y = combos_total)) +
+    geom_point() +
+    facet_grid(. ~ condition) +
+    labs(x = NULL, y = "Total combinations") +
+    lims(x = range(dd$age_months / 12), y = range(dd$combos_total)),
+ggplot(dd %>% filter(condition %in% c("C3", "C4")),
+       aes(x = age_months / 12, y = combos_total)) +
+  geom_point() +
+  facet_grid(. ~ condition) +
+  labs(x = "Age in years", y = "Total combinations") +
+  lims(x = range(dd$age_months / 12), y = range(dd$combos_total))
+)
+```
+
+### Combos after success
+
+```{r echo=FALSE, message=FALSE}
+grid.arrange(
+  dd %>% filter(success == 1, condition %in% c("C1", "C2")) %>%
+    ggplot(aes(x = age_months / 12,
+               y = combos_post_success)) +
+    geom_point() +
+    facet_grid(. ~ condition) +
+    labs(x = NULL, y = "Combinations post success") +
+    lims(x = range(dd$age_months / 12)),
+  
+  dd %>% filter(success == 1, condition %in% c("C3", "C4")) %>%
+    ggplot(aes(x = age_months / 12,
+               y = combos_post_success)) +
+    geom_point() +
+    facet_grid(. ~ condition) +
+    labs(x = "Age in years", y = "Combinations post success") +
+    lims(x = range(dd$age_months / 12), y = range(dd$combos_post_success))
+  )
+```
+
+### Combos until success
+
+```{r echo=FALSE, message=FALSE}
+grid.arrange(
+  dd %>% filter(success == 1, condition %in% c("C1", "C2")) %>%
+    ggplot(aes(x = age_months / 12,
+               y = combos_pre_success)) +
+    geom_point() +
+    facet_grid(. ~ condition) +
+    labs(x = NULL, y = "Combinations until success") +
+    lims(x = range(dd$age_months / 12)),
+  
+  dd %>% filter(success == 1, condition %in% c("C3", "C4")) %>%
+    ggplot(aes(x = age_months / 12,
+               y = combos_pre_success)) +
+    geom_point() +
+    facet_grid(. ~ condition) +
+    labs(x = "Age in years", y = "Combinations until success") +
+    lims(x = range(dd$age_months / 12), y = range(dd$combos_pre_success))
+  )
+```
+
+## Combinations before vs. after success
+
+This plot combines the counts of combinations before and after success.
+The large points show after how many combinations children were successful, and the spans until the small points show their post-success exploration.
+It reflects information already given above, but puts combos-to-success and combos-upon-success into context.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+grid.arrange(
+  dd %>% filter(success == 1, condition %in% c("C1", "C2")) %>% 
+    ggplot(aes(
+      x = age_months / 12,
+      y = combos_pre_success)) +
+    geom_errorbar(aes(ymin = combos_pre_success,
+                      ymax = combos_total),
+                  color = "grey80") +
+    geom_point(size = 1.5) +
+    geom_point(aes(y = combos_total),
+               size = .5) +
+    facet_grid(. ~ condition) +
+    labs(x = NULL, y = "Combinations") +
+    lims(x = range(dd %>% filter(success == 1) %>% pull(age_months) / 12),
+         y = c(0, 100)),
+  
+  dd %>% filter(success == 1, condition %in% c("C3", "C4")) %>% 
+    ggplot(aes(
+      x = age_months / 12,
+      y = combos_pre_success)) +
+    geom_errorbar(aes(ymin = combos_pre_success,
+                      ymax = combos_total),
+                  color = "grey80") +
+    geom_point(size = 1.5) +
+    geom_point(aes(y = combos_total),
+               size = .5) +
+    facet_grid(. ~ condition) +
+    labs(x = "condition", y = "Combinations") +
+    lims(x = range(dd %>% filter(success == 1) %>% pull(age_months) / 12),
+         y = c(0, 100))
+)
+```
+
+To sum up, the counts of non-unique button presses and combinations of button presses do not suggest any positive effect upon further exploration when the instruction includes an epistemic qualifier by the adult (condition C3).
+All I can see is that it takes children longer to find the target in C1, probably because they get no hints about likely combinations.
+
+## Time measures by condition
+
+### Time until first look away
+
+```{r echo=FALSE, message=FALSE}
+ggplot(dd,
+       aes(x = condition,
+           y = lat_first_look_away / 1000)) +
+  geom_boxplot(alpha = 0,
+               width = .5,
+               color = "grey") +
+  geom_dotplot(binaxis = "y",
+               stackdir = "center",
+               alpha = .5) +
+  ylab("Seconds until first look away")
+```
+
+### Time until first inactive for 3 seconds
+
+```{r echo=FALSE, message=FALSE}
+ggplot(dd,
+       aes(x = condition,
+           y = lat_3sec / 1000)) +
+  geom_boxplot(alpha = 0,
+               width = .5,
+               color = "grey") +
+  geom_dotplot(binaxis = "y",
+               stackdir = "center",
+               alpha = .5) +
+  ylab("Seconds to first inactive for 3s")
+```
+
+## Time measures by condition and age
+
+### Time until first look away
+
+```{r echo=FALSE}
+grid.arrange(
+  ggplot(dd %>% filter(condition %in% c("C1", "C2")),
+         aes(x = age_months / 12,
+             y = lat_first_look_away / 1000)) +
+    geom_point() +
+    facet_grid(. ~ condition) +
+    labs(x = NULL, y = "Seconds to first look away") +
+    lims(x = range(dd$age_months / 12), y = range(dd$lat_first_look_away / 1000)),
+  
+  ggplot(dd %>% filter(condition %in% c("C3", "C4")),
+         aes(x = age_months / 12,
+             y = lat_first_look_away / 1000)) +
+    geom_point() +
+    facet_grid(. ~ condition) +
+    labs(x = "age in years", y = "Seconds to first look away") +
+    lims(x = range(dd$age_months / 12), y = range(dd$lat_first_look_away / 1000))
+)
+  
+```
+
+### Time until first inactive for 3 seconds
+
+```{r echo=FALSE}
+grid.arrange(
+  ggplot(dd %>% filter(condition %in% c("C1", "C2")),
+         aes(x = age_months / 12,
+             y = lat_3sec / 1000)) +
+    geom_point() +
+    facet_grid(. ~ condition) +
+    labs(x = NULL, y = "Sec to first idle for 3 sec") +
+    lims(x = range(dd$age_months / 12), y = range(dd$lat_3sec / 1000)),
+  
+  ggplot(dd %>% filter(condition %in% c("C3", "C4")),
+         aes(x = age_months / 12,
+             y = lat_3sec / 1000)) +
+    geom_point() +
+    facet_grid(. ~ condition) +
+    labs(x = "age in years", y = "Sec to first idle for 3 sec") +
+    lims(x = range(dd$age_months / 12), y = range(dd$lat_3sec / 1000))
+)
+```
+
+
+
+# Models to predict behavior
+
+## Predicting total combos
+
+Total number of combinations (C) as a function of condition and age:
+
+$$\begin{align}
+C_i &\sim Poisson(\lambda_i) \\
+log(\lambda_i) &= \alpha_{Cond[i]} + \beta A \cdot Age_i + \beta_{Cond[i]} Age_i \\
+\alpha_{Cond[i]} &\sim Normal(2, 2) && \text{per-condition intercept} \\
+\beta A &\sim Normal(0, 0.5) && \text{age main effect}\\
+\beta_{Cond[i]} &\sim Normal(0, 0.5) && \text{per-condition age effect}
+\end{align}$$
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dat <- list( combos = dd$combos_total,
+             condition = dd$condition %>% as.integer,
+             age = dd$age_months %>% scale %>% as.numeric )
+
+m1 <- ulam(
+  alist(
+    combos ~ dpois(lambda),
+    log(lambda) <- a[condition] + b[condition]*age + bA*age,
+    a[condition] ~ dnorm(2, 2),
+    b[condition] ~ dnorm(0, 0.5),
+    bA ~ dnorm(0, 0.5)
+  ),
+  data = dat, iter = 2000, warmup = 500, chains = 4, cores = 4, log_lik = TRUE
+)
+
+```
+
+**Diagnostic**: Check trace plots to see if the MCMC process went fine:
+
+```{r}
+traceplot(m1)
+```
+
+Chains look healthy, i.e., the technical sampling or fitting process has been unproblematic.
+
+### Prior prediction check
+
+Check priors: Have we initialized the MCMC process with reasonable assumptions, i.e. with predictions that allow all plausible values?
+Sample a bunch of random predictions from the priors of the model:
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+N = 500
+
+prediction_data <- expand.grid(
+  age = seq(from = -2, to = 2, length.out = 50),
+  condition = 1:4)
+prior <- extract.prior(m1, n = N)
+mu <- link(m1,
+           post = prior,
+           data = prediction_data,
+           n = N) %>% t()
+prior_check_data <- cbind(prediction_data, mu)
+
+names(prior_check_data)[3:(N+2)] <- paste0("line", 1:N)
+
+# long dataset form for plotting:
+prior_check_data <- prior_check_data %>% 
+  gather(key = "line",
+         value = "lambda",
+         -c(age, condition))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(prior_check_data, aes(x = age, y = lambda)) +
+  geom_line(aes(group = line),
+            alpha = .1) +
+  facet_grid(. ~ condition) +
+  ylim(c(0, 80)) +
+  labs(x = "age (z)", y = "mean total combos")
+```
+
+Looks like all plausible values (and some more) were within the model's prior expectations.
+
+### Posterior predictions
+
+Parameter values are hard to interpret in GLMs, so let's use them for predictions on the outcome scale instead.
+How have the data informed our predictions for the mean total combinations (the lambda in the Poisson model) and for plausible actual measurements?
+
+- **lines and blue ribbon**: estimate and 95% ci of the mean ($\lambda$) number of combinations
+- **grey ribbon**: 95% ci of predicted number of combinations
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+mu <- link(m1, data = prediction_data)
+mu_m <- apply(mu, 2, mean)
+mu_lower <- apply(mu, 2, PI, prob = .95)[1,]
+mu_upper <- apply(mu, 2, PI, prob = .95)[2,]
+
+m1_sim <- sim(m1, data = prediction_data)
+sim_lower <- apply(m1_sim, 2, PI, prob = .95)[1,]
+sim_upper <- apply(m1_sim, 2, PI, prob = .95)[2,]
+
+post_check_data <- prediction_data %>% 
+  mutate(mean = mu_m,
+         mean_lower = mu_lower,
+         mean_upper = mu_upper,
+         sim_lower = sim_lower,
+         sim_upper = sim_upper
+  )
+grid.arrange(
+ggplot(post_check_data %>% filter(condition %in% c(1,2)),
+       aes(x = age)) +
+  geom_ribbon(aes(ymin = sim_lower,
+                  ymax = sim_upper),
+              alpha = .15) +
+  geom_ribbon(aes(ymin = mean_lower,
+                  ymax = mean_upper),
+              alpha = .4,
+              fill = "blue") +
+  geom_point(data = as.data.frame(dat) %>% filter(condition %in% 1:2),
+             aes(x = age,
+                 y = combos)) +
+  geom_line(aes(y = mean)) +
+  facet_grid(. ~ condition),
+
+ggplot(post_check_data %>% filter(condition %in% 3:4),
+       aes(x = age)) +
+  geom_ribbon(aes(ymin = sim_lower,
+                  ymax = sim_upper),
+              alpha = .15) +
+  geom_ribbon(aes(ymin = mean_lower,
+                  ymax = mean_upper),
+              alpha = .4,
+              fill = "blue") +
+  geom_point(data = as.data.frame(dat) %>% filter(condition %in% 3:4),
+             aes(x = age,
+                 y = combos)) +
+  geom_line(aes(y = mean)) +
+  facet_grid(. ~ condition)
+
+
+)
+```
+
+Our data are overdispersed relative to a Poisson model.
+So there are other forces apart from the Poisson process that influence how many total (non-unique) button presses children perform.
+Noise comes to mind.
+For the variable of total button presses, this is the best model I can think of right now, given the measurements that we have.
+
+### Model comparison to a simpler model
+
+... without condition.
+See if the difference in fit is large.
+Model structure:
+
+$$\begin{align}
+C_i &\sim Poisson(\lambda_i) \\
+log(\lambda_i) &= \alpha + \beta Age_i \\
+\alpha &\sim Normal(2,2) \\
+\beta &\sim Normal(0, 0.5)
+\end{align}$$
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+m2 <- ulam(
+  alist(
+    combos ~ dpois(lambda),
+    log(lambda) <- a + bA*age,
+    a ~ dnorm(2, 2),
+    bA ~ dnorm(0, 0.5)
+  ),
+  data = dat, iter = 2000, warmup = 500, chains = 4, cores = 4, log_lik = TRUE
+)
+```
+
+Check chains:
+
+```{r echo=FALSE}
+traceplot(m2)
+```
+
+Posterior predictions:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+prediction_data <- data.frame(
+  age = seq(from = -2, to = 2, length.out = 50)
+  )
+
+mu <- link(m2, data = prediction_data)
+mu_m <- apply(mu, 2, mean)
+mu_lower <- apply(mu, 2, PI, prob = .95)[1,]
+mu_upper <- apply(mu, 2, PI, prob = .95)[2,]
+
+m2_sim <- sim(m2, data = prediction_data)
+sim_lower <- apply(m2_sim, 2, PI, prob = .95)[1,]
+sim_upper <- apply(m2_sim, 2, PI, prob = .95)[2,]
+
+post_check_data <- prediction_data %>% 
+  mutate(mean = mu_m,
+         mean_lower = mu_lower,
+         mean_upper = mu_upper,
+         sim_lower = sim_lower,
+         sim_upper = sim_upper
+  )
+
+ggplot(post_check_data,
+       aes(x = age)) +
+  geom_ribbon(aes(ymin = sim_lower,
+                  ymax = sim_upper),
+              alpha = .15) +
+  geom_ribbon(aes(ymin = mean_lower,
+                  ymax = mean_upper),
+              alpha = .4,
+              fill = "blue") +
+  geom_point(data = as.data.frame(dat),
+             aes(x = age,
+                 y = combos)) +
+  geom_line(aes(y = mean))
+```
+
+Model comparison between `m1` with condition factor and `m2` without it:
+
+```{r paged.print=FALSE}
+compare(m1, m2)
+```
+
+The WAIC (a measure that estimates how good the out-of-sample predictions of a model are) is lower (better) for the model without the condition predictor.
+All Akaike weight (4th column) is assigned to the simpler model.
+This suggests that the model *without* condition in it makes better out-of-sample predictions.
+
+In other words, if we predict total combinations from age and condition, we can as well leave away condition.
+
+## The other dependent variables
+
+Now in fast-forward, look at the same pairs of models with the same predictors, but using the other outcome variables, *combinations until success* and *combinations after success*.
+
+**combinations until success**:
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+dat <- list( combos = dd$combos_pre_success,
+             condition = dd$condition %>% as.integer,
+             age = dd$age_months %>% scale %>% as.numeric )
+
+m1_preSuccess <- ulam(
+  alist(
+    combos ~ dpois(lambda),
+    log(lambda) <- a[condition] + b[condition]*age,
+    a[condition] ~ dnorm(2, 2),
+    b[condition] ~ dnorm(0, 0.5)
+  ),
+  data = dat, iter = 2000, warmup = 500, chains = 4, cores = 4, log_lik = TRUE
+)
+
+m2_preSuccess <- ulam(
+  alist(
+    combos ~ dpois(lambda),
+    log(lambda) <- a + bA*age,
+    a ~ dnorm(2, 2),
+    bA ~ dnorm(0, 0.5)
+  ),
+  data = dat, iter = 2000, warmup = 500, chains = 4, cores = 4, log_lik = TRUE
+)
+```
+
+```{r echo=FALSE, paged.print=FALSE}
+compare(m1_preSuccess, m2_preSuccess)
+```
+
+**combinations after success**:
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+ddd <- dd %>% filter(success == 1)
+dat <- list( combos = ddd$combos_post_success,
+             condition = ddd$condition %>% as.integer,
+             age = ddd$age_months %>% scale %>% as.numeric )
+
+m1_postSuccess <- ulam(
+  alist(
+    combos ~ dpois(lambda),
+    log(lambda) <- a[condition] + b[condition]*age,
+    a[condition] ~ dnorm(2, 2),
+    b[condition] ~ dnorm(0, 0.5)
+  ),
+  data = dat, iter = 2000, warmup = 500, chains = 4, cores = 4, log_lik = TRUE
+)
+
+m2_postSuccess <- ulam(
+  alist(
+    combos ~ dpois(lambda),
+    log(lambda) <- a + bA*age,
+    a ~ dnorm(2, 2),
+    bA ~ dnorm(0, 0.5)
+  ),
+  data = dat, iter = 2000, warmup = 500, chains = 4, cores = 4, log_lik = TRUE
+)
+```
+
+```{r echo=FALSE, paged.print=FALSE}
+compare(m1_postSuccess, m2_postSuccess)
+```
+
+The same pattern repeats for the other two measurement variables.
+Out-of-sample prediction is better without the condition predictor.
+
+Note that as one would expect, the deviance (the "badness of fit") is lower with the models that contain condition as predictor:
+
+```{r echo=FALSE}
+as.list(c(m1, m2)) %>% map(deviance) %>% set_names(c("m1", "m2")) %>% unlist
+```
+
+```{r echo=FALSE}
+as.list(c(m1_preSuccess, m2_preSuccess)) %>%
+  map(deviance) %>% set_names(c("m1_preSuccess", "m2_preSuccess")) %>% unlist
+```
+
+```{r echo=FALSE}
+as.list(c(m1_postSuccess, m2_postSuccess)) %>%
+  map(deviance) %>% set_names(c("m1_postSuccess", "m2_postSuccess")) %>% unlist
+```
+

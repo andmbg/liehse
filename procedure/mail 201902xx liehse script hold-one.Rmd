@@ -1,0 +1,140 @@
+---
+Title: LIEHSE script with new instructions
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.height=2, echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+Hi Azzurra and Frauke,
+
+Frauke and I came up the other day with a possible modification to the instructions that might give children's exploration on the box somewhat more meaning.
+**The bottom line:** *tell them it's some combination that includes the red button*; this way, we get more hypothesis tests before success and perhaps greater probability that children keep exploring after success.
+
+# So far
+
+So far, the instructions either say nothing about specific combinations.
+Then the likelihood distribution logically looks like this (let's call the four buttons A, B, C, D):
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+theme_set(theme_classic())
+names <- c("A", "B", "C", "D", "AB", "AC", "AD", "BC", "BD", "CD", "ABC", "BCD", "ACD", "ABD", "ABCD")
+slots <- 1:15
+combos <- factor(x = slots, labels = names)
+
+dist <- data.frame(Combo = combos,
+                   probability = 1/15)
+
+ggplot(dist, aes(x = Combo,
+                 y = probability)) +
+  geom_bar(stat = "identity") +
+  ylim(c(0, 0.25))
+```
+
+And children's testing will likely be distributed like this:
+
+```{r echo=FALSE}
+ps <- c(5,5,5,5,4,4,4,4,4,4,2,2,2,2,1)
+ps <- ps/sum(ps)
+dist <- data.frame(Combo = combos,
+                   probability = ps)
+ggplot(dist, aes(x = Combo,
+                 y = probability)) +
+  geom_bar(stat = "identity") + ylim(c(0, 0.25))
+```
+
+(Three-button combos are just harder to do motorically and they're an idea you need to have in the first place, given you have 2 hands.)
+
+When the instruction focused on one combination, children have often tested this one first.
+They are successful and from here it is not clear what motivates any further presses.
+So kids start out with a skewed likelihood distribution, something like this:
+
+```{r echo=FALSE}
+ps <- c(6,6,3,3,16,4.5,4.5,4.5,4.5,2,3,2,2,3,1)
+ps <- ps/sum(ps)
+dist <- data.frame(Combo = combos,
+                   probability = ps)
+ggplot(dist, aes(x = Combo,
+                 y = probability)) +
+  geom_bar(stat = "identity") + ylim(c(0, 0.25))
+```
+
+If AB is the combination, no matter what the exact wording in the instruction was, this combination is massively favored.
+And maybe A and B as single buttons, and *maybe* combinations that contain them are favored a little bit, too.
+
+So the structuring of the hypothesis space is quite simple:
+It's the mentioned combination vs. all the others.
+
+# The idea
+
+We can get a better structuring of the hypothesis space.
+We can give an instruction that goes like:
+
+> (I think but might be wrong that...) The correct combination includes the A button.
+
+This way, we partition the hypothesis space into the 8 combinations that contain the A button versus the others.
+From a logical standpoint, it looks like this:
+
+```{r echo=FALSE}
+ps <- c(4,0,0,0,4,4,4,0,0,0,4,0,4,4,4)
+ps <- ps/sum(ps)
+dist <- data.frame(Combo = combos,
+                   probability = ps)
+ggplot(dist, aes(x = Combo,
+                 y = probability)) +
+  geom_bar(stat = "identity") + ylim(c(0, 0.25))
+```
+
+
+As kids will probably generally disfavor 3- and 4-button combinations and more happily explore simple (1/2 button) hypotheses, it might look like this:
+
+```{r echo=FALSE}
+ps <- c(11,4,4,4,10,10,10,2,2,2,4,2,4,4,2)
+ps <- ps/sum(ps)
+dist <- data.frame(Combo = combos,
+                   probability = ps)
+ggplot(dist, aes(x = Combo,
+                 y = probability)) +
+  geom_bar(stat = "identity") + ylim(c(0, 0.25))
+```
+
+So what would be helpful about the proposed instruction is that children have an extra hypothesis sub-space that they can exhaust or not under different wordings.
+We can ask: Given the (sometimes epistemically qualified) weighting of the hypothesis space towards combinations containing A, did children exhaust the relevant sub-space before they turned to other combinations that do not contain A?
+
+Perhaps we even get the box to cheat on children:
+To only light up when children press the third unique combination containing A.
+This way we give all children the same amount of time or tests before success, instead of ~1/3 of them hitting upon the successful combination at their first attempt.
+
+What do you think?
+
+## Script
+
+*Roughly*, I can think of these instructions:
+
+> Da ist der { graue, rote, schwarze, weiße } Schalter <point>.
+> Man kann die Lampe <point> anmachen.
+
+### C1: control
+
+No influence on the hypothesis space:
+
+> Man kann einen oder mehrere Knöpfe zusammen drücken.
+
+### C2: unqualified
+
+Direct, epistemically unqualified focus on the red button:
+
+> Bei der richtigen Kombination ist der rote Knopf dabei.
+
+### C3: qualified
+
+Focus on red button, qualify epistemically:
+
+> Ich dachte, bei der richtigen Kombination wäre der rote Knopf dabei? <act insecure>
+
+### C4: --> Any other manipulations?
+
+Note that I had some reservations with a previous condition in which E justs gives a looong list of 2-button combinations, maybe those were all six.
+For one, this de-emphasizes the possibility of 3-button combos.
+But more importantly, we wrestle here with memory as an extra factor, with recency and primacy effects, plus an instruction that seems a bit odd pragmatically.
