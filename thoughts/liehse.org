@@ -1,5 +1,5 @@
  
-* Log
+* Log                                                               :ARCHIVE:
 
 ** Azzurra
      
@@ -32,9 +32,9 @@ It's a pilot.
   + bayes: based on instructions and influenced hyp space, how efficient is probing of hypothesis space?
 
 
-** Actual wording of conditions
+* Actual wording of conditions
 
-*** Early (from start to somewhere when it changed) [2017-07-18]    :ARCHIVE:
+** Early (from start to somewhere when it changed) [2017-07-18]    :ARCHIVE:
     
 - C1:
   Man kann die Lampen anmachen.
@@ -62,7 +62,7 @@ It's a pilot.
   Probier mal aus wie das Ding funktioniert, ich komm gleich wieder.
   
 
-*** Late (until end of hand-coded trials) [2017-09-13]              :ARCHIVE:
+** Late (until end of hand-coded trials) [2017-09-13]              :ARCHIVE:
 
 - C1:
   Man kann einen oder zwei Schalter zusammen drücken,
@@ -94,60 +94,66 @@ It's a pilot.
   Probier mal aus wie das Ding funktioniert, ich muss kurz was aufschreiben.
 
      
-*** New  [2019-03-14]
+** New  [2019-03-14]
 
-**** Instruktion LIEHSE
+*** Instruktion LIEHSE
 
-***** Eingang
+**** Eingang
 
 - Guck mal hier, ich will dir so gerne (noch) die Box hier zeigen.
 - Guck mal, da sind vier Schalter <Fig. 1> und ne Lampe <Fig. 2>.
 - Und die Lampe, die kann angehen.
 - Aber dafür musst du einen oder mehrere Schalter *gleichzeitig* drücken.
 
-***** Bedingungen
+**** Bedingungen
 
-****** 0 "Control"
+***** 0 "Control"
 Probier mal!
 
-****** 1 "Unmarked"
+***** 1 "Unmarked"
 Das hat mit dem weißen Schalter hier zu tun.
 
-****** 2 "Marked"
+***** 2 "Marked"
 Vielleicht hat das mit dem weißen Schalter hier zu tun.
 
-****** 3 "Unmarked disjunctive"
+***** 3 "Unmarked disjunctive"
 Das hat mit dem weißen ODER mit dem roten Schalter zu tun.
 
-****** 4 "Marked disjunctive"
+***** 4 "Marked disjunctive"
 Vielleicht hat das mit dem weißen ODER mit dem roten Schalter zu tun.
 
-***** Ende
+**** Ende
 Wenn du nicht mehr weitermachen willst, dann holste mich wieder rein.
 
 
-**** Messgrößen & Hypothesen
+*** Messgrößen & Hypothesen
 
-***** count types [n/15]
+**** count types [n/15]
 - mehr bei "vielleicht" vs. unmarkiert
 - (AD:) schnelleres vs. langsameres Abfallen der Dichte origineller Types vs. Control
 - (AR:) mehr bei OR vs. nur ein Vorschlag
 
-***** count tokens [n]
+**** count tokens [n]
 - mehr bei "vielleicht" vs. unmarkiert
 - (AR:) mehr bei OR vs. nur ein Vorschlag
 
-***** time [s]
+**** time [s]
 - länger bei "vielleicht" vs. unmarkiert
 - länger bei OR vs. nur ein Vorschlag
 
-***** Sequenzen
+**** Sequenzen
 - mehr strahlenförmig (hold one) bei nicht-OR
 
 
-**** Wann die Lampe angeht
+*** Wann die Lampe angeht
 
 - Dös isch der Knackpunkt.
   Frauke will post-light-Exploration.
   Dafür müssen wir Tokens & Types zählen.
   Technisches Zählproblem.
+
+
+* TODO Manuscript
+
+- "I think it might be useful to start working on a draft on overleaf, where we jot down a couple of notes for the introduction, we describe the methods used in details and list the analyses we are planning to run."
+

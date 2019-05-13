@@ -7,25 +7,20 @@ output: html_document
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
-library(ggnewscale)
 setwd("../data")
 infiles <- list.files(pattern = "*.csv")
 d_list <- lapply(infiles, read.csv)
 d <- do.call(rbind, d_list) %>% 
   mutate(duration = c(interval[-1], 0),
-         interval = NULL) %>% 
-  group_by(participant_code) %>% 
-  mutate(timestamp = timestamp - timestamp[1]) %>% 
+         interval = NULL) %>%
+  group_by(participant_code) %>%
+  mutate(timestamp = timestamp - timestamp[1]) %>%
   ungroup
 
 rm(d_list)
 ```
 
-```{r}
-min_interval <- 100 # minimum distance between obs to be separate
-```
-
-# Plot key presses as score:
+# Plot key strokes as score:
 
 ```{r}
 red_events <- d %>% 
@@ -166,7 +161,7 @@ keys_combos_plot <- rbind(combos_plot, events_plot) %>%
 # decoration: condition per child into each facet:
 cond_deco <- keys_combos_plot %>% 
   group_by(participant) %>% 
-  summarize(condition = condition[1])
+  summarize(condition = condition[2])
 ```
 
 ```{r}
@@ -188,7 +183,7 @@ post_success_phase <- keys_combos_plot %>%
 ```
 
 
-```{r fig.height=15, fig.width=50}
+```{r fig.height=20, fig.width=50}
 # hack: get width left of 0 for manual decoration:
 xoffs <- max(keys_combos_plot$timestamp + keys_combos_plot$duration) * 0.01 /1000
 
@@ -208,10 +203,11 @@ ggplot(keys_combos_plot) +
              color = "blue",
              size = 1,
              alpha = .5) +
-  geom_rect(aes(fill = condition),
+  geom_rect(data = cond_deco,
+            aes(fill = condition),
             color = NA,
-             xmin = -xoffs, xmax = -xoffs + 1,
-             ymin = 0.5, ymax = 5.5) +
+            xmin = -xoffs, xmax = -xoffs + 1,
+            ymin = 0.5, ymax = 5.5) +
   geom_text(data = cond_deco,
             aes(label = condition),
             x = -xoffs, y = 3,
@@ -241,3 +237,151 @@ ggsave("Liehse key logs.pdf", width = 50, height = N_subjects, units = "in", lim
 
 ```
 
+
+
+
+
+
+# Filter parasitic key strokes
+
+```{r}
+min_interval <- 100 # minimum distance between obs to be separate
+```
+
+# within tracks:
+# ---fill gaps-------------------
+# unique
+# if n.red == 0 and n.dur < limit:
+#   n.red <- 1.
+#
+# ---connect 111-----------------
+# each red:
+#   n.red==1 & n+1.red==1? no: next.
+#     yes: ts <- n.ts; dur <- n.dur + n+1.dur; m <- 2
+#     addLine(m): n+m.red==1? no: n.dur = dur; delete n+1; next.
+#       yes: m += 1; addLine(m+1)
+```{r}
+x <- d %>% 
+  select(-c(4:6))
+
+y <- x %>% 
+  mutate(begin = (lag(red) != red | is.na(lag(red))),
+         event_no = cumsum(begin)) %>% 
+  group_by(event_no) %>% 
+  mutate(duration = sum(duration)) %>% 
+  ungroup %>% 
+  filter(begin == 1) %>% 
+  group_by(participant_code) %>% 
+  slice(1:(length(red) - 1)) %>%
+  ungroup %>% 
+  mutate(begin = NULL,
+         key = "red")
+
+ggplot(y, aes(y = 1,
+              yend = 1,
+              x = timestamp / 1000,
+              xend = (timestamp + duration) / 1000,
+              color = as.factor(red))) +
+  geom_segment(size = 3) +
+  facet_grid(participant_code ~ .) +
+  scale_x_continuous(breaks = seq(0, 300, 10),
+                     minor_breaks = seq(0, 300, 1)) +
+  theme(panel.grid.major.x = element_line(size = .7),
+        panel.grid.minor.x = element_line(size = .1))
+ggsave("x.pdf", width = 49, height = 15)
+```
+
+# Animate
+
+```{r fig.width=50, fig.height=2}
+library(gganimate)
+keys_combos_one <- keys_combos_plot %>% 
+  filter(participant == "01")
+
+frames <- seq(0, max(keys_combos_one$timestamp), by = 40)
+file_frame <- 0
+first_frame <- TRUE
+delay <- round(52*25 + 5, 0)
+
+### TEST:
+for(frame in frames) {
+  file_frame <- file_frame + 1
+  
+  ggplot(keys_combos_one) +
+    geom_segment(aes(x = timestamp / 1000,
+                     xend = (timestamp + duration) / 1000,
+                     y = y,
+                     yend = y,
+                     color = combo),
+                 size = 3) +
+    geom_hline(yintercept = 1,
+               color = "white",
+               alpha = 0.3,
+               size = 6) +
+    geom_vline(data = keys_combos_one %>% filter(success == TRUE),
+               aes(xintercept = timestamp / 1000),
+               color = "blue",
+               size = 1,
+               alpha = .5) +
+    ### { TEST:
+    geom_vline(xintercept = frame / 1000,
+               color = "#bb0000",
+               size = 1,
+               alpha = .5) +
+    ### }
+    geom_rect(data = cond_deco_one,
+              aes(fill = condition),
+              color = NA,
+              xmin = -xoffs, xmax = -xoffs + 1,
+              ymin = 0.5, ymax = 5.5) +
+    geom_text(data = cond_deco_one,
+              aes(label = condition),
+              x = -xoffs, y = 3,
+              angle = 90, color = "black",
+              vjust = 1.4,
+              size = 3) +
+    facet_grid(participant ~ ., switch = "y") +
+    theme_dark() +
+    theme(panel.grid.major.y = element_blank(),
+          panel.grid.major.x = element_line(color = "grey40",
+                                            size = 0.7)) +
+    scale_color_manual(values = c(
+      "black", "green", "red", "white", '#fef0d9','#fdd49e','#fdbb84','#fc8d59','#ef6548','#d7301f', 'grey25', 'grey40', 'grey55', 'grey70', 'grey85', "grey80"
+    ), guide = FALSE ) +
+    scale_fill_manual(values = c(
+      "#aaffaa", "white", "grey75", "#ffaaaa", "#cc8888"
+    ), guide = FALSE) +
+    scale_x_continuous(breaks = seq(0, 300, by = 1),
+                       expand = c(.01, 0),
+                       limits = c(max(0, frame/1000 - 1),
+                                  frame/1000 + 5)) +
+    #limits = c(0, 300)) +
+    labs(x = NULL,
+         y = NULL)
+  
+  ### { TEST:
+  if(first_frame) {
+    while(file_frame < delay) {
+      ggsave(paste0("anim_frame_",
+                  str_pad(file_frame, width = 4, pad = "0"),
+                  ".png"),
+             width = 14.4,
+             height = 1.5,
+             dpi = 100,
+             units = "in"
+      )
+      file_frame <- file_frame + 1
+    }
+    first_frame <- FALSE
+  }
+  ### }
+  ggsave(paste0("anim_frame_",
+                str_pad(file_frame, width = 4, pad = "0"),
+                ".png"),
+         width = 14.4,
+         height = 1.5,
+         dpi = 100,
+         units = "in"
+  )
+}
+```
